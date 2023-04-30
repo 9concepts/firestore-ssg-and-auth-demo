@@ -1,6 +1,9 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import { createFirebaseClientApp } from "@/lib/firebase";
+import "@/styles/globals.css";
+import type { AppProps } from "next/app";
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  createFirebaseClientApp();
+
+  return <Component {...pageProps} />;
 }

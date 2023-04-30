@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  function isValidWork(work) {
+    return work.size() == 3
+     && "text" in work
+     && "createdAt" in work
+     && "userId" in work
+     && work.text is string
+     && work.text.size() > 0
+     && work.createdAt is timestamp
+     && request.auth.uid == work.userId;
+  }
+
+  match /databases/{database}/documents {
+    match /works/{workId} {
+      allow read;
+      allow create: if isValidWork(request.resource.data);
+    }
+  }
+}
