@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { useState } from "react";
 
-export const ClientSideLotin = () => {
+export const ClientSideLogin = () => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   const auth = getAuth();

@@ -1,4 +1,4 @@
-import { ClientSideLotin } from "@/components/ClientSideLotin";
+import { ClientSideLogin } from "@/components/ClientSideLogin";
 import { GetServerSideProps } from "next";
 
 const verify = async (idToken: string) => {
@@ -40,7 +40,7 @@ export default function Home() {
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24`}
     >
-      <ClientSideLotin />
+      <ClientSideLogin />
     </main>
   );
 }
