@@ -31,7 +31,9 @@ export const ServerSideLogin = () => {
   };
 
   return (
-    <div className="grid gap-4">
+    <div className="grid gap-4 py-8">
+      <h1>Login with Server</h1>
+
       <div>
         <div className="grid grid-rows-2 grid-cols-2 gap-2">
           <label htmlFor="email">Email</label>
