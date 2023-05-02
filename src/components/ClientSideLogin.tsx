@@ -1,21 +1,12 @@
-import {
-  getAuth,
-  GoogleAuthProvider,
-  onAuthStateChanged,
-  signInWithRedirect,
-  User,
-  signOut,
-} from "firebase/auth";
+import { getAuth, onAuthStateChanged, User } from "firebase/auth";
 import { useState } from "react";
+import { LogoutButton } from "./LogoutButton";
+import { LoginButton } from "./LoginButton";
 
 export const ClientSideLogin = () => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   const auth = getAuth();
-  const handleGoogleSignIn = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider);
-  };
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -35,23 +26,9 @@ export const ClientSideLogin = () => {
   return (
     <div className="grid gap-4">
       <div>
-        {!currentUser && (
-          <button
-            className="rounded px-4 py-2 bg-gray-800 hover:bg-gray-700"
-            onClick={handleGoogleSignIn}
-          >
-            Login
-          </button>
-        )}
         {currentUser && <div> {currentUser.displayName} </div>}
-        {currentUser && (
-          <button
-            className="rounded px-4 py-2 bg-gray-800 hover:bg-gray-700"
-            onClick={() => signOut(auth)}
-          >
-            Logout
-          </button>
-        )}
+        {currentUser && <LogoutButton />}
+        {!currentUser && <LoginButton />}
       </div>
     </div>
   );
